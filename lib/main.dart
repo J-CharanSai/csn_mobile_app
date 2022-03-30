@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:cinema_social_network/screens/signin.dart';
-import 'package:cinema_social_network/screens/signup.dart';
+import 'package:cinema_social_network/model/movie.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -18,6 +18,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: SigninPage(),
+      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
+

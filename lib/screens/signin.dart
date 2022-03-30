@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:cinema_social_network/screens/signup.dart';
+import 'package:cinema_social_network/model/movie.dart';
 
 
 
@@ -80,7 +81,7 @@ class SigninPage extends StatelessWidget {
                     onPressed: () {
                         Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => SignupPage()),
+                        MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Flutter Demo Home Page')),
                         );
                         //signup screen
                     },

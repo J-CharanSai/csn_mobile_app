@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   mysql1: ^0.19.2
+  mysql_client: ^0.0.13
 
   
   http: ^0.13.4

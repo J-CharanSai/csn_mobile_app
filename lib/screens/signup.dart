@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
-
 import 'package:cinema_social_network/screens/signin.dart';
+import 'package:mysql_client/mysql_client.dart';
 
 
-class SignupPage extends StatelessWidget {
+class SignupPage extends StatefulWidget {
+  const SignupPage({Key? key, required this.pool}) : super(key: key);
+
+  final MySQLConnectionPool pool;
+
+  @override
+  State<SignupPage> createState() => _SignupPageState();
+}
+
+
+class _SignupPageState extends State<SignupPage> {
     static const routeName = '/next-page';
     TextEditingController nameController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
@@ -77,9 +87,21 @@ class SignupPage extends StatelessWidget {
                     child: ElevatedButton(
                     child: const Text('SignUp'),
                     onPressed: () {
-                        print(emailidControler.text);
-                        print(nameController.text);
-                        print(passwordController.text);
+                        print("Button Pressed");
+                        var result = widget.pool.execute(
+                            "INSERT INTO user (user_id, user_emailid, user_password) VALUES (:id, :eid, :pass);",
+                            {
+                              "id": nameController.text,
+                              "eid": emailidControler.text,
+                              "pass":passwordController.text
+                            });
+
+                        result.then((value) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => SigninPage(pool: widget.pool)),
+                            );
+                        });
                     },
                     )
                 ),
@@ -95,7 +117,7 @@ class SignupPage extends StatelessWidget {
                         
                         Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => SigninPage()),
+                        MaterialPageRoute(builder: (context) => SigninPage(pool: widget.pool)),
                         );
                         //signin screen
                     },
